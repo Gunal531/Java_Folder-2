@@ -1,0 +1,32 @@
+import java.util.*;
+
+class BSTIterator {
+
+    private Stack<TreeNode> stack;
+
+    public BSTIterator(TreeNode root) {
+        stack = new Stack<>();
+        pushLeft(root);
+    }
+
+    // Push all left nodes into the stack
+    private void pushLeft(TreeNode node) {
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
+        }
+    }
+
+    public int next() {
+        TreeNode node = stack.pop();
+
+        // The right subtree may contain the next values
+        pushLeft(node.right);
+
+        return node.val;
+    }
+
+    public boolean hasNext() {
+        return !stack.isEmpty();
+    }
+}
