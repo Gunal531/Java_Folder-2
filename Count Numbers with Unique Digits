@@ -1,0 +1,23 @@
+
+class Solution {
+    public int countNumbersWithUniqueDigits(int n) {
+        if (n == 0) {
+            return 1;
+        }
+
+        // Numbers cannot have more than 10 unique digits
+        n = Math.min(n, 10);
+
+        int total = 10;
+        int uniqueCount = 9;
+        int availableDigits = 9;
+
+        for (int i = 2; i <= n; i++) {
+            uniqueCount = uniqueCount * availableDigits;
+            total += uniqueCount;
+            availableDigits--;
+        }
+
+        return total;
+    }
+}
