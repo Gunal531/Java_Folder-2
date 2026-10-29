@@ -1,0 +1,24 @@
+
+import java.util.Arrays;
+
+class Solution {
+    public void wiggleSort(int[] nums) {
+        int n = nums.length;
+
+        int[] sorted = nums.clone();
+        Arrays.sort(sorted);
+
+        int mid = (n - 1) / 2;
+        int end = n - 1;
+
+        // Fill even indices using the smaller half, backwards
+        for (int i = 0; i < n; i += 2) {
+            nums[i] = sorted[mid--];
+        }
+
+        // Fill odd indices using the larger half, backwards
+        for (int i = 1; i < n; i += 2) {
+            nums[i] = sorted[end--];
+        }
+    }
+}
