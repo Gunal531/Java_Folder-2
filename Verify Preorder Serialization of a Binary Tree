@@ -1,0 +1,29 @@
+
+class Solution {
+    public boolean isValidSerialization(String preorder) {
+
+        String[] nodes = preorder.split(",");
+
+        // Initially, one slot for the root
+        int slots = 1;
+
+        for (String node : nodes) {
+
+            // No available position for this node
+            if (slots == 0) {
+                return false;
+            }
+
+            // Use one available slot
+            slots--;
+
+            // Non-null node creates two child slots
+            if (!node.equals("#")) {
+                slots += 2;
+            }
+        }
+
+        // Valid if all slots are filled
+        return slots == 0;
+    }
+}
